@@ -1,0 +1,49 @@
+{
+  "name": "@gopowerteam/vue-modal",
+  "version": "0.0.14",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs.js",
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.es.js"
+      }
+    },
+    "./dist/style.css": {
+      "require": "./dist/style.css",
+      "import": "./dist/style.css"
+    }
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.1",
+    "stylus": "^0.59.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.2.1",
+    "vite-plugin-dts": "^2.1.0",
+    "vite-svg-loader": "^4.0.0",
+    "vue": "^3.2.47"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gopowerteam/package.vue-modal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gopowerteam/package.vue-modal/issues"
+  },
+  "homepage": "https://github.com/gopowerteam/package.vue-modal",
+  "license": "MIT"
+}
