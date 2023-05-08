@@ -1,6 +1,6 @@
 {
   "name": "@gopowerteam/vue-modal",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build"
