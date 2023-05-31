@@ -20,6 +20,7 @@ function getModalContainer(ctx: ComponentInternalInstance | null) {
 export function useModal() {
   const modal = inject('modal') as any
   const ctx = getCurrentInstance() as any
+
   return {
     open: (option: IModalOption): Promise<any> => {
       return modal.open(option)

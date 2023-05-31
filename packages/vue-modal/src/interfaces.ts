@@ -1,6 +1,6 @@
 interface IModalComponentOption {
   component: any
-  props: { [key: string]: any }
+  props?: { [key: string]: any }
 }
 
 export interface IModalWindowOption {
@@ -9,6 +9,8 @@ export interface IModalWindowOption {
   title?: string
   header?: boolean
   width?: number | string
+  frameless?: boolean
+  padding?: number | string
 }
 
 export interface IModalOption

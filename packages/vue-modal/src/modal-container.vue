@@ -12,7 +12,7 @@
         :style="contentStyle"
       >
         <div
-          v-if="header"
+          v-if="header && !frameless"
           ref=""
           class="modal-header"
         >
@@ -36,6 +36,15 @@
             v-bind="params"
           />
         </div>
+        <div
+          v-if="closable && frameless"
+          class="frameless-close-button"
+        >
+          <CloseSVG
+            class="close-button"
+            @click="onCloseModal"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -55,8 +64,8 @@
 .modal-content {
   margin: auto;
   background: rgb(255, 255, 255);
-  padding: 10px;
   border-radius: 5px;
+  position: relative;
 }
 
 .modal-header {
@@ -68,9 +77,30 @@
   font-weight: 600;
   font-size: 16px;
 }
-.modal-header .close-button {
+.close-button {
   width: 20px;
   height: 20px;
+  cursor: pointer;
+}
+
+.frameless-close-button:hover,.close-button:hover {
+  fill: rgba(0, 0, 0, 0.5);
+}
+
+.frameless-close-button {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 100%;
+  margin-top: 10px;
   cursor: pointer;
 }
 </style>
@@ -120,6 +150,14 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  frameless: {
+    type: Boolean,
+    default: false,
+  },
+  padding: {
+    type: [Number, String],
+    default: 10,
+  },
 })
 
 const modal = inject('modal') as any
@@ -159,6 +197,7 @@ const contentStyle = computed(() => {
   const styles: { key: keyof CSSProperties; value: string | number | unknown }[] = [
     { key: 'width', value: getValue(props.width) },
     { key: 'minWidth', value: getValue(props.minWidth) },
+    { key: 'padding', value: props.frameless ? 0 : getValue(props.padding) },
   ]
 
   return styles
