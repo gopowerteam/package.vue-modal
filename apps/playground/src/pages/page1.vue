@@ -35,7 +35,6 @@ export default defineComponent({
           },
           width: '50%',
           maskClosable: false,
-          frameless: true,
         })
     }
     return {

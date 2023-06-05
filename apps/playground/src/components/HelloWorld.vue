@@ -6,7 +6,7 @@
   <button @click="bbb">
     cccc
   </button>
-  <p>
+  <p v-for="item in 100" :key="item">
     Recommended IDE setup:
     <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
     +

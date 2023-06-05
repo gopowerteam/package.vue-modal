@@ -107,7 +107,7 @@
 
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import { computed, defineProps, inject, onMounted, shallowRef, triggerRef } from 'vue'
+import { computed, defineProps, inject, onMounted, ref, shallowRef, triggerRef } from 'vue'
 
 import CloseSVG from './assets/icons/close.svg?component'
 
@@ -165,14 +165,21 @@ const modal = inject('modal') as any
 const wrapperRef = shallowRef<any>()
 const contentRef = shallowRef<any>()
 
+const contentHeight = ref<number>(0)
+
+const resizeObserver = new ResizeObserver((entries) => {
+  for (const entry of entries)
+    contentHeight.value = entry.contentRect.height
+})
+
 const wrapperStyle = computed(() => {
   const wrapper = wrapperRef.value
   const content = contentRef.value
 
-  const oversize = wrapper && content && wrapper.clientHeight <= content.clientHeight
+  const oversize = wrapper && content && wrapper.clientHeight <= contentHeight.value
 
   return oversize
-    ? { padding: '10px 0' }
+    ? { padding: '20px 0' }
     : {
         display: 'flex',
         justifyContent: 'center',
@@ -233,5 +240,7 @@ function onKeyboard() {
 onMounted(() => {
   onKeyboard()
   onResize()
+
+  resizeObserver.observe(contentRef.value)
 })
 </script>
